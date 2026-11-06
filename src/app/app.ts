@@ -1,13 +1,16 @@
+import { JsonPipe } from '@angular/common';
+import { httpResource } from '@angular/common/http';
 import { Component, signal } from '@angular/core';
 
 
 @Component({
-  imports: [],
+  imports: [JsonPipe],
   selector: 'app-root',
   styleUrl: './app.scss',
   templateUrl: './app.html',
 })
 export class App {
+  BASE_URL = "https://jsonplaceholder.typicode.com/users"
   protected flag = signal(true)
   protected readonly title = signal('I Love .Net');
   protected isFormValid = signal(false)  
@@ -15,7 +18,9 @@ export class App {
   skill(){
     this.title.set('I Love JavaScript')
   }
-
+  users = httpResource<any>(()=> {
+    return this.BASE_URL
+  })
   ngOnInit() : void {
     setTimeout(() => {
       this.isFormValid.set(true)

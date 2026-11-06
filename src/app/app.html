@@ -1,13 +1,28 @@
 <div class="container">
   <div class="row">
     <div class="col-12 mt-5">
+
+      <!-- {{users.value()| json}} -->
+       <ul class="list-group">
+        @for(u of users.value(); track u.id) {
+          <li class="list-group-item">
+
+              The user name is <strong>{{u.name}}</strong>
+          </li>
+        }
+       </ul>
+
       <ul class="list-group mb-3">
-        @for(skil of skills; track skil){
+        <!-- @for(skil of skills; track skil){
         <li class="list-group-item">
 
           {{skil}}
         </li>
-        }
+
+        }@empty {
+          <p class="alert alert-info">
+            Don't have added any skills yet...
+        } -->
       </ul>
 
       @if (flag()) {
